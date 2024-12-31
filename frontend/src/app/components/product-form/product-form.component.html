@@ -1,0 +1,30 @@
+<div class="product-form-container">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="sku">SKU</label>
+            <input id="sku" formControlName="sku" type="text" required />
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input id="name" formControlName="name" type="text" required />
+        </div>
+        <div>
+            <label for="price">Price</label>
+            <input id="price" formControlName="price" type="number" required />
+        </div>
+        <div>
+            <label for="images">Images</label>
+            <input id="images" type="file" (change)="onFileChange($event)" multiple accept="image/*" />
+        </div>
+        <div *ngIf="productForm.get('images')?.value?.length">
+            <h4>Selected Images:</h4>
+            <div class="product-images">
+                <div *ngFor="let image of productForm.get('images')?.value; let i = index" class="product-image">
+                    <img [src]="image.preview" alt="{{ image.name }}" width="50" height="50" />
+                    <button type="button" (click)="removeImage(i)">Remove</button>
+                </div>
+            </div>
+        </div>
+        <button class="submit-btn" type="submit" [disabled]="productForm.invalid">Submit</button>
+    </form>
+</div>

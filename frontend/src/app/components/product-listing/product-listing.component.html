@@ -1,0 +1,30 @@
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>SKU</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Images</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{ product.sku }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+                <div class="product-images">
+                    <img *ngFor="let image of product.images" [src]="image.url" alt="Product Image" width="50"
+                        height="50" />
+                </div>
+            </td>
+            <td>
+                <div class="action-btns">
+                    <button class="edit-btn" (click)="editProduct(product.id)">Edit</button>
+                    <button class="delete-btn" (click)="deleteProduct(product.id)">Delete</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
