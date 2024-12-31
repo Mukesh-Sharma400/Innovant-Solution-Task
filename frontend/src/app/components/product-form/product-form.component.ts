@@ -121,7 +121,7 @@ export class ProductFormComponent {
 
       request.subscribe({
         next: (response) => {
-          this.router.navigate(['/products']);
+          this.router.navigate(['/']);
         },
         error: (error) => {
           console.error('Error saving product', error);
